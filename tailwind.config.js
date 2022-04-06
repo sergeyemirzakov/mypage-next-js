@@ -5,14 +5,12 @@ module.exports = {
   ],
   theme: {
     container: {
+      padding: '1rem',
       center: true,
       screens: {
         sm: '100%',
         md: '650px',
       },
-    },
-    fontFamily: {
-      serif: ['Source Serif Pro', 'serif'],
     },
     extend: {},
   },
