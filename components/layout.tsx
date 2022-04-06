@@ -23,7 +23,7 @@ const Layout = ({ children, home }: IProps) => {
       </Head>
 
       {/* Header */}
-      <header className="bg-blue-800 p-2 fixed top-0 left-0 right-0 text-center">
+      <header className="bg-blue-800 p-2 fixed top-0 left-0 right-0 text-center z-50">
         <div className="container">
           <span className="text-white">
             I am header and will be always at the top 😉
