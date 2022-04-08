@@ -1,0 +1,16 @@
+.title {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.background {
+  background-image: url('../../public/images/bg.png');
+  background-repeat: no-repeat;
+  background-position: right bottom;
+  background-size: 420px;
+}
+
+@media (max-width: 768px) {
+  .background {
+    background-image: none;
+  }
+}
