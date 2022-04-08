@@ -2,6 +2,8 @@ import Head from 'next/head';
 import Link from 'next/link';
 
 import CustomImage from '../components/customImage';
+import Header from './header/Header';
+import MainScreen from './main-screen/MainScreen';
 
 interface IProps {
   children?: JSX.Element | JSX.Element[] | React.ReactChild | string | string[];
@@ -23,14 +25,8 @@ const Layout = ({ children, home }: IProps) => {
       </Head>
 
       {/* Header */}
-      <header className="bg-blue-800 p-2 fixed top-0 left-0 right-0 text-center z-50">
-        <div className="container">
-          <span className="text-white">
-            I am header and will be always at the top 😉
-          </span>
-        </div>
-      </header>
-
+      <Header />
+      <MainScreen />
       {/* Main Wrapper */}
       <div className="flex flex-col justify-between h-screen">
         {/* Main */}
