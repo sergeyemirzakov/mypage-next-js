@@ -5,11 +5,13 @@ module.exports = {
   ],
   theme: {
     container: {
-      padding: '1rem',
+      padding: '1.5rem',
       center: true,
       screens: {
-        sm: '100%',
-        md: '650px',
+        sm: '640px',
+        md: '768px',
+        lg: '1024px',
+        xl: '1200px',
       },
     },
     extend: {},
