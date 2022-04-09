@@ -1,0 +1,10 @@
+.picture {
+  width: 200px;
+  height: 130px;
+  display: flex;
+  margin-left: 10px;
+}
+
+.textWrapper {
+  width: 470px;
+}
