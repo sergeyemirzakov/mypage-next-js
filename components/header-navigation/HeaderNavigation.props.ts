@@ -1,3 +1,4 @@
 export interface HeaderNavigation {
-  scrollHeight?: boolean;
+  scrollHeight: boolean;
+  openDialogModal?: () => void;
 }
