@@ -4,7 +4,10 @@ import { HeaderNavigation } from './HeaderNavigation.props';
 
 const menuItems: string[] = ['Our story', 'Membership', 'Write'];
 
-const HeaderNavigation = ({ scrollHeight }: HeaderNavigation) => {
+const HeaderNavigation = ({
+  scrollHeight,
+  openDialogModal,
+}: HeaderNavigation) => {
   const buttonStyles = scrollHeight ? 'bg-black' : 'bg-green-600';
 
   return (
@@ -26,6 +29,7 @@ const HeaderNavigation = ({ scrollHeight }: HeaderNavigation) => {
           </li>
         </ul>
         <button
+          onClick={openDialogModal}
           className={
             buttonStyles +
             ' text-white py-2 px-5 rounded-2xl transition duration-300'
