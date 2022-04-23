@@ -1,20 +1,27 @@
 import Link from 'next/link';
+import { normalizeArticleDate } from '../../lib/utils/normalizeDate';
 
 interface ArticleFooterProps {
-  readingTime: string;
-  tags: string;
+  tagList: string[];
+  createdAt: string;
 }
 
-const ArticleFooter = ({ readingTime, tags }: ArticleFooterProps) => {
+const ArticleFooter = ({ tagList, createdAt }: ArticleFooterProps) => {
+  const articleDate = normalizeArticleDate(createdAt);
+
   return (
     <div className="flex items-center mt-3">
-      <div className="text-[12px] sm:text-sm mr-5">{readingTime}</div>
+      <div className="text-[12px] sm:text-[12px] mr-5 text-gray-500">
+        • {articleDate}
+      </div>
       <div className="inline-flex">
-        <Link href="/">
-          <a className="text-[12px] sm:text-sm bg-slate-200 py-1 px-2 rounded-3xl">
-            {tags}
-          </a>
-        </Link>
+        {tagList.map((tag, idx) => (
+          <Link key={idx} href="/">
+            <a className="text-[12px] text-gray-500 sm:text-[13px] bg-gray-100 py-1 px-3 rounded-3xl mr-1">
+              {tag}
+            </a>
+          </Link>
+        ))}
       </div>
     </div>
   );
