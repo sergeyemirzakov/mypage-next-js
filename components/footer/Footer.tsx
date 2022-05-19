@@ -1,9 +1,9 @@
 const Footer = () => {
   return (
-    <footer className="bg-slate-700 p-1 text-center mt-10">
+    <footer className="bg-gray-200 p-1 mt-10">
       <div className="container">
-        <span className="text-white">
-          I am footer and will be always at the bottom 😉
+        <span className="text-black text-[10px]">
+          ❤️ Build with NextJs. Tailwind CSS. RealWorldAPi
         </span>
       </div>
     </footer>
