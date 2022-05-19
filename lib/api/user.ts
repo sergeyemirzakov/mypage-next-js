@@ -66,3 +66,30 @@ export const getCurrentUser = () => {
 export const logoutUser = async (key: string) => {
   sessionStorage.removeItem(key);
 };
+
+// Update user
+export const updateUser = async (
+  token?: string,
+  email?: string,
+  username?: string,
+  password?: string,
+  bio?: string,
+  image?: string
+) => {
+  try {
+    const response = await axios.put(
+      GET_CURRENT_USER,
+      JSON.stringify({ user: { email, username, password, bio, image } }),
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: 'Token ' + token,
+        },
+      }
+    );
+    return response;
+  } catch (error) {
+    const err = error as AxiosError;
+    return err.response;
+  }
+};
