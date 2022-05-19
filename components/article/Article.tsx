@@ -1,58 +1,67 @@
+import Image from 'next/image';
+import { ArticleProps } from './Article.props';
+import { deleteArticle } from '../../lib/api/articles';
 import useSWR from 'swr';
-import ArticleLoader from './ArticleLoader';
-import ArticleHeader from './ArticleHeader';
-import ArticleBody from './ArticleBody';
-import ArticleImage from './ArticleImage';
-import ArticleFooter from './ArticleFooter';
-import { getArticles } from '../../lib/api/articles';
+import { useRouter } from 'next/router';
+import { storage } from '../../lib/utils/storage';
+import { AiOutlineEdit, AiFillDelete } from 'react-icons/ai';
+import UserName from '../user/UserName';
 
-const ARTICLE_IMG =
-  'https://images.unsplash.com/photo-1649194270591-8eead57b94c3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80';
+const Article = ({
+  authorImg,
+  username,
+  articleImg,
+  title,
+  body,
+  slug,
+}: ArticleProps) => {
+  const router = useRouter();
+  const { data: user } = useSWR('user', storage);
 
-const Article = () => {
-  const { data, error } = useSWR('articles', getArticles);
+  const removeArticle = async () => {
+    await deleteArticle(user.token, slug);
+    router.push('/');
+  };
+
+  const editArticle = async () => {
+    router.push(`/edit/${slug}`);
+  };
 
   return (
-    <div className="w-full order-1 md:w-3/5 md:order-0">
-      {/* If we encounter an error, we show this block */}
-      {error && (
-        <h1 className="text-xl font-semibold text-red-500">Server error</h1>
-      )}
-
-      {/* While we are waiting posts we are showing preloaders */}
-      {!data && !error && <ArticleLoader />}
-
-      {/* Render posts here */}
-      {!!data &&
-        data.articles.map((item) => (
-          <div key={item.slug} className="mb-16">
-            <div className="flex items-center justify-between">
-              <div className="w-full">
-                {/* User Avatar and User Name */}
-                <ArticleHeader
-                  authorImg={item.author.image}
-                  username={item.author.username}
-                />
-
-                {/* Atricle Body */}
-                <ArticleBody
-                  slug={item.slug}
-                  title={item.title}
-                  description={item.description}
-                />
-
-                {/* Article Reading Time and Tags */}
-                <ArticleFooter
-                  createdAt={item.createdAt}
-                  tagList={item.tagList}
-                />
-              </div>
-
-              {/* Article Picture */}
-              <ArticleImage articleImg={ARTICLE_IMG} />
-            </div>
+    <div className="w-[100%] md:w-[63%] px-5 whitespace-pre-line">
+      <div className="flex items-center justify-between mt-8">
+        <div className="flex items-center">
+          <div className="flex mr-3">
+            <UserName authorImg={authorImg} username={username} size="40" />
           </div>
-        ))}
+        </div>
+        <div className="text-sm flex items-center">
+          {/* If you are not a Gerome you can delete an article */}
+          {username !== 'Gerome' && (
+            <div>
+              <button
+                onClick={editArticle}
+                className="bg-gray-200 px-2 py-1 rounded-md text-gray-900 border border-gray-400 mr-2"
+              >
+                <span>
+                  <AiOutlineEdit size="1.1rem" />
+                </span>
+              </button>
+              <button
+                onClick={removeArticle}
+                className="bg-gray-200 px-2 py-1 rounded-md text-gray-900 border border-gray-400"
+              >
+                <AiFillDelete size="1.1rem" />
+              </button>
+            </div>
+          )}
+        </div>
+      </div>
+      <div className="my-10">
+        <Image src={articleImg} width="700" height="400" objectFit="cover" />
+      </div>
+      <div className="font-bold text-3xl my-10">{title}</div>
+      <p className="whitespace-pre-line">{body}</p>
     </div>
   );
 };
