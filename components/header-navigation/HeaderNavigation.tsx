@@ -1,43 +1,45 @@
-import useSWR, { useSWRConfig } from 'swr';
+import useSWR from 'swr';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { HeaderNavigation } from './HeaderNavigation.props';
 import { storage } from '../../lib/utils/storage';
-
-const MENU_ITEMS: string[] = ['Our story', 'Membership', 'Write'];
+import { MdOutlineCreate } from 'react-icons/md';
+import UserPanel from '../user/UserPanel';
+import { useState } from 'react';
 
 const HeaderNavigation = ({ scrollHeight }: HeaderNavigation) => {
+  const [openUserPanel, setOpenUserPanel] = useState(false);
   const router = useRouter();
-  const { mutate } = useSWRConfig();
   const { data: user } = useSWR('user', storage);
   const isLoggedIn = !!user;
 
   // if the the header is lower than the "scrollHeight" then paint the buttom green
   const buttonStyles = scrollHeight ? 'bg-black' : 'bg-green-600';
 
+  // If user is logged in, show the modal screen to create the article.
+  // Otherwise direct to login page
+  const createArticle = () => {
+    isLoggedIn ? router.push('/create-article') : router.push('/login');
+  };
+
+  const onOpenUserPanel = () => {
+    setOpenUserPanel((prev) => !prev);
+  };
+
   return (
     <>
       <nav className="flex items-center text-sm">
         <ul className="flex items-center">
-          {MENU_ITEMS &&
-            MENU_ITEMS.map((item, idx) => (
-              <li key={idx} className="mr-7 hidden sm:block">
-                <Link href="/">
-                  <a>{item}</a>
-                </Link>
-              </li>
-            ))}
-          <li className="mr-7">
+          <li className="mr-5">
+            <button onClick={createArticle} className="flex items-center">
+              <span className="mr-1">
+                <MdOutlineCreate size="1.3rem" />
+              </span>
+              Create Article
+            </button>
+          </li>
+          <li className="mr-5">
             {/* If the user is logged in, we show the logout button otherwise we show the login */}
-            {isLoggedIn && (
-              <button
-                onClick={() =>
-                  mutate('user', sessionStorage.removeItem('user'))
-                }
-              >
-                Logout
-              </button>
-            )}
             {!isLoggedIn && (
               <button onClick={() => router.push('/login')}>Sign In</button>
             )}
@@ -46,11 +48,21 @@ const HeaderNavigation = ({ scrollHeight }: HeaderNavigation) => {
         {/* If the user is logged in, we show a thumbnail. 
         The thumbnail is created by the first character of the username */}
         {isLoggedIn && (
-          <Link href="/">
-            <a className="flex items-center justify-center rounded-full text-white bg-black h-[30px] w-[30px]">
-              {user.username[0]}
-            </a>
-          </Link>
+          <div className="relative" onClick={onOpenUserPanel}>
+            <div className="border-[3px] rounded-full border-gray-500">
+              {isLoggedIn && (
+                <Link href="/">
+                  <a className="flex items-center justify-center rounded-full text-white bg-black h-[30px] w-[30px]">
+                    {user.username[0]}
+                  </a>
+                </Link>
+              )}
+            </div>
+            {/* User Panel */}
+            <div className="absolute left-[-55px] top-[45px]">
+              {openUserPanel && <UserPanel />}
+            </div>
+          </div>
         )}
         {/* If the user is not logged in, we show this button */}
         {!isLoggedIn && (
