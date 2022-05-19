@@ -1,7 +1,7 @@
 import type { NextPage } from 'next';
 import Layout from '../components/layout/Layout';
 import MainScreen from '../components/main-screen/MainScreen';
-import Article from '../components/article/Article';
+import Article from '../components/articles/Articles';
 import Sidebar from '../components/sidebar/Sidebar';
 
 const Home: NextPage = () => {
@@ -11,6 +11,7 @@ const Home: NextPage = () => {
       <div className="pt-20">
         <div className="container">
           <div className="flex flex-col md:flex md:flex-row">
+            <p>{process.env.NEXT_PUBLIC_TEXT}</p>
             {/* ArticleLoader */}
             <Article />
             {/* Sidebar */}
