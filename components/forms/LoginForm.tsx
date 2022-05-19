@@ -9,9 +9,6 @@ import Spinner from '../preloaders/Spinner';
 
 const LoginForm = () => {
   const router = useRouter();
-  // Form fields
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
   // Form validation
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
@@ -37,7 +34,7 @@ const LoginForm = () => {
 
       if (user) {
         sessionStorage.setItem('user', JSON.stringify(user));
-        router.push('/');
+        router.back();
         setIsLoading(false);
       }
     } catch (error) {
@@ -63,8 +60,6 @@ const LoginForm = () => {
             type="text"
             name="email"
             placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
           />
           <div className="text-red-500 text-sm text-center my-1">
             {errors.email?.message}
@@ -77,8 +72,6 @@ const LoginForm = () => {
             type="text"
             name="password"
             placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
           />
           <div className="text-red-500 text-sm text-center my-1">
             {errors.password?.message}
