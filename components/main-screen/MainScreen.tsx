@@ -8,10 +8,10 @@ const MainScreen = () => {
   const isLoggedIn = !!user;
 
   return (
-    <div className={'bg-blue-300 pt-15 border-b-1 border-black'}>
+    <div className={'bg-sky-500 pt-10 border-b-1 border-black text-white'}>
       <div className="container">
-        <div className="py-28 bg-none md:bg-[url('/images/bg.png')] bg-[length:420px] bg-right-bottom bg-no-repeat">
-          <h1 className={'font-serif text-6xl mb-10 sm:text-7xl md:text-8xl'}>
+        <div className="py-10">
+          <h1 className={'font-serif text-5xl mb-10 sm:text-7xl md:text-8xl'}>
             Stay curious.
           </h1>
           <h2 className="text-xl sm:text-2xl max-w-md mb-10">

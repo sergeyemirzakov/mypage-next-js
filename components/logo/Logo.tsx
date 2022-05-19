@@ -7,10 +7,10 @@ const Logo = () => {
         <a className="p-2">
           <span>
             <svg
-              className="w-[120px] sm:w-[150px]"
+              className="w-[110px] sm:w-[140px]"
               version="1.0"
               xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 560 400"
+              viewBox="20 100 520 200"
             >
               <g>
                 <path
