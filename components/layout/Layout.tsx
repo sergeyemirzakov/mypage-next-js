@@ -13,7 +13,7 @@ const Layout = ({ children }: LayoutProps) => {
           <div>{children}</div>
         </main>
         {/* Footer */}
-        {/* <Footer /> */}
+        <Footer />
       </div>
     </>
   );
