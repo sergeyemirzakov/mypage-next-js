@@ -101,7 +101,7 @@ const Profile = ({ data }: any) => {
 
 export const getStaticPaths: GetStaticPaths = async () => {
   return {
-    paths: ['/profile/[[...slug]]'],
+    paths: ['/profile/null'],
     fallback: true,
   };
 };
