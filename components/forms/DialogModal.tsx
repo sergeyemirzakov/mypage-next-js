@@ -2,17 +2,21 @@ import { useRouter } from 'next/router';
 import { Dialog } from '@headlessui/react';
 
 interface DialogModalProps {
-  children?: JSX.Element | JSX.Element;
+  children?: React.ReactNode;
+  title?: string;
 }
 
-const DialogModal = ({ children }: DialogModalProps) => {
+const DialogModal = ({
+  children,
+  title = 'Welcome back',
+}: DialogModalProps) => {
   const router = useRouter();
 
   return (
     <Dialog
       open
       as="div"
-      className="fixed inset-0 z-[100] overflow-y-auto bg-blue-300 h-screen"
+      className="fixed inset-0 z-[100] overflow-y-auto bg-sky-500 h-screen"
       onClose={() => router.push('/')}
     >
       <div className="min-h-screen text-center flex justify-center items-center">
@@ -23,7 +27,7 @@ const DialogModal = ({ children }: DialogModalProps) => {
               as="h3"
               className="text-xl text-center font-medium leading-6 text-gray-900 mb-5"
             >
-              Welcome back.
+              {title}
             </Dialog.Title>
             <div className="mt-2">
               {/* We are getting children here */}
