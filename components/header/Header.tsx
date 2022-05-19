@@ -17,7 +17,7 @@ const Header = () => {
   }, []);
 
   // Header styles
-  const headerBackground = scrollHeight ? 'bg-blue-300' : 'bg-white';
+  const headerBackground = scrollHeight ? 'bg-sky-200' : 'bg-white';
   const headerDefaultStyles =
     ' flex items-center border-b border-black fixed top-0 left-0 right-0 text-center z-50 h-20 transition duration-300';
 
