@@ -58,7 +58,12 @@ const Article = ({
         </div>
       </div>
       <div className="my-10">
-        <Image src={articleImg} width="700" height="400" objectFit="cover" />
+        <Image
+          src={articleImg}
+          width="700px"
+          height="400px"
+          objectFit="cover"
+        />
       </div>
       <div className="font-bold text-3xl my-10">{title}</div>
       <p className="whitespace-pre-line">{body}</p>
