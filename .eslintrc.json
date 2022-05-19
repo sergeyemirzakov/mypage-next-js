@@ -57,20 +57,6 @@
         "allow": ["warn", "error"]
       }
     ],
-    "import/no-duplicates": ["error", { "considerQueryString": true }],
-    "import-helpers/order-imports": [
-      "warn",
-      {
-        "newlinesBetween": "always",
-        "groups": [
-          ["/^react/"],
-          ["module"],
-          ["/^~//"],
-          ["parent", "sibling", "index"]
-        ]
-        // You can switch on this field and then all your imports should go in alphabit order
-        // "alphabetize": { "order": "asc", "ignoreCase": true }
-      }
-    ]
+    "import/no-duplicates": ["error", { "considerQueryString": true }]
   }
 }

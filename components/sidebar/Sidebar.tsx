@@ -1,5 +1,5 @@
-import SidebarTopic from './SidebarTopic';
 import SidebarNavLinks from './SidebarNavLinks';
+import Tags from '../tags/Tags';
 
 const Sidebar = () => {
   return (
@@ -8,7 +8,7 @@ const Sidebar = () => {
         <h2 className="font-bold text-sm mb-5">
           DISCOVER MORE OF WHAT MATTERS TO YOU
         </h2>
-        <SidebarTopic />
+        <Tags />
         <SidebarNavLinks />
       </div>
     </div>

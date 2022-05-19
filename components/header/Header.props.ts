@@ -1,3 +1,1 @@
-export interface HeaderProps {
-  openDialogModal?: () => void;
-}
+export interface HeaderProps {}

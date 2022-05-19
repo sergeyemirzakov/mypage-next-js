@@ -1,10 +1,8 @@
 import { useState, useEffect } from 'react';
-
-import { HeaderProps } from './Header.props';
 import HeaderNavigation from '../header-navigation/HeaderNavigation';
 import Logo from '../logo/Logo';
 
-const Header = ({ openDialogModal }: HeaderProps) => {
+const Header = () => {
   const OFFSET_HEIGHT_TRIGGER = 250;
   const [scrollHeight, setScrollHeight] = useState(true);
 
@@ -19,7 +17,7 @@ const Header = ({ openDialogModal }: HeaderProps) => {
   }, []);
 
   // Header styles
-  const headerBackground = scrollHeight ? 'bg-blue-200' : 'bg-white';
+  const headerBackground = scrollHeight ? 'bg-sky-200' : 'bg-white';
   const headerDefaultStyles =
     ' flex items-center border-b border-black fixed top-0 left-0 right-0 text-center z-50 h-20 transition duration-300';
 
@@ -28,10 +26,7 @@ const Header = ({ openDialogModal }: HeaderProps) => {
       <div className="container">
         <div className="flex items-center justify-between">
           <Logo />
-          <HeaderNavigation
-            openDialogModal={openDialogModal}
-            scrollHeight={scrollHeight}
-          />
+          <HeaderNavigation scrollHeight={scrollHeight} />
         </div>
       </div>
     </header>

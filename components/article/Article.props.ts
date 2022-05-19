@@ -1,10 +1,8 @@
 export interface ArticleProps {
-  id: string;
-  userName: string;
-  userImg: string;
-  title: string;
-  description: string;
+  authorImg: string;
+  username: string;
   articleImg: string;
-  tags: string;
-  readingTime: string;
+  title: string;
+  body: string;
+  slug: string;
 }
